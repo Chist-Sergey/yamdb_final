@@ -24,6 +24,7 @@ jobs:
         python -m flake8
         cd infra_project/
         python manage.py test
+        pytest
   docker:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
