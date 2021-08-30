@@ -32,6 +32,7 @@ class ReviewPermission(permissions.BasePermission):
             )
         if request.user.is_authenticated:
             return True
+        return False
 
 
 class ReadOnly(permissions.BasePermission):
