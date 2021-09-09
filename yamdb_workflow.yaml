@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: 2498573548934587/infra_ac:latest
+          tags: 2498573548934587/yamdb_final:latest
   deploy:
       runs-on: ubuntu-latest
       on:
@@ -61,7 +61,7 @@ jobs:
                 passphrase: ${{ secrets.PASSPHRASE }}
                 stack_file_name: docker-compose.yaml
                 script: |
-                  sudo docker pull {{ secrets.DOCK_USER }}/infra_ac
+                  sudo docker pull {{ secrets.DOCK_USER }}/yamdb_final
                   sudo docker-compose stop
                   sudo docker-compose rm web
                   touch .env 
