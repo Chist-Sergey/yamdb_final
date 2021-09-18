@@ -2,10 +2,11 @@ from django.db.models import Avg
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.permissions import SAFE_METHODS
-from api.serializers import TitleCreateSerializer, TitleSerializer
-from api.permissions import IsAdmin, ReadOnly
-from api.filters import TitleFilter
+
 from api.models import Title
+from api.permissions import IsAdmin, ReadOnly
+from api.serializers import TitleCreateSerializer, TitleSerializer
+from api.filters import TitleFilter
 
 
 class TitleViewSet(viewsets.ModelViewSet):
