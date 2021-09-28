@@ -23,8 +23,6 @@ jobs:
           pip install -r requirements.txt
       - name: Lint with flake8
         run: flake8 .
-      - name: Test with pytest
-        run: python manage.py test
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
@@ -41,14 +39,14 @@ jobs:
       - name: Login to Docker
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCK_USER }}
-          password: ${{ secrets.DOCK_PASS }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: 2498573548934587/yamdb_final:latest
+          tags: bdcry/yamdb_final:latest
 
   deploy:
     name: Deploing the project
@@ -64,17 +62,9 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           apt update && apt install sudo
-          sudo docker pull 2498573548934587/yamdb_final
-          sudo docker-compose stop
-          sudo docker-compose rm web
-          touch .env
-          echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
-          echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-          echo POSTGRES_USER=${{ secrets.DB_USER }} >> .env
-          echo POSTGRES_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
-          echo DB_HOST=${{ secrets.DB_HOST }} >> .env
-          echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-          sudo docker-compose up -d
+          sudo docker pull bdcry/yamdb_final
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker run --rm -d -p 5000:5000 bdcry/yamdb_final
 
   send_message:
     runs-on: ubuntu-latest
@@ -83,6 +73,7 @@ jobs:
       - name: send message
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TL_TO }}
-          token: ${{ secrets.TL_TOKEN }}
-          message: ${{ github.workflow }} успешно выполнен!
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: >
+            ${{ github.workflow }} успешно выполнен!
