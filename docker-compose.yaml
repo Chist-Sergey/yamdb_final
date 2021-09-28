@@ -1,4 +1,3 @@
-GNU nano 4.8                                                                                                                                                                           
 version: '3.8'
 volumes:
   postgres_data:
@@ -13,7 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   web:
-    image: bdcry/yamdb_final:latest
+    image: 2498573548934587/yamdb_final:latest
     restart: always
     command: gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
     ports:
