@@ -51,7 +51,6 @@ jobs:
           tags: 2498573548934587/yamdb_final:latest
 
   deploy:
-    name: Deploing the project
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
