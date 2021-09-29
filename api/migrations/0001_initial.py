@@ -15,10 +15,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-<<<<<<< HEAD
-=======
 	('api', '__first__'),
->>>>>>> testn3
         ('auth', '0011_update_proxy_permissions'),
     ]
 
