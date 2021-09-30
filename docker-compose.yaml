@@ -1,22 +1,24 @@
+
 version: '3.8'
 
 services:
   db:
     image: postgres:12.4
     volumes:
-      - postgres_data:/var/lib/postgresql/date/
+      - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - .env
+      - ./.env
   web:
-    build: .
+    image: 2498573548934587/yamdb_final:latest
     restart: always
     volumes:
       - static_value:/code/static/
+
       - media_value:/code/media/
     depends_on:
       - db
     env_file:
-      - .env
+      - ./.env
 
   nginx:
     image: nginx:1.19.3
