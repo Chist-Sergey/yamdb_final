@@ -1,28 +1,49 @@
 from django.contrib import admin
 
-from .models import Comment, Review, Title, Category, Genre
+from api.models import (Category, Comment, CustomUser, EmailAndCode, Genre,
+                        Review, Title)
 
 
-@admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'slug')
-
-
-@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'slug')
+    list_display = ('id', 'name', 'slug',)
+    search_fields = ('name',)
+    prepopulated_fields = {"slug": ("name",)}
 
 
-@admin.register(Title)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'slug',)
+    search_fields = ('name',)
+    prepopulated_fields = {"slug": ("name",)}
+
+
 class TitleAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'year', 'category')
+    list_display = (
+        'id',
+        'name',
+        'year',
+        'description',
+        'category',
+    )
+    search_fields = ('name',)
 
 
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'author', 'title', 'pub_date')
+class EmailAndCodeAdmin(admin.ModelAdmin):
+    list_display = ('email', 'confirm_code', 'expire_date')
 
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'author', 'review', 'pub_date')
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('email', 'username', 'role')
+    fieldsets = (
+        (None, {'fields': (
+            'first_name', 'last_name', 'email', 'username', 'bio', 'role')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+    )
+
+
+admin.site.register(Review)
+admin.site.register(Comment)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Genre, GenreAdmin)
+admin.site.register(Title, TitleAdmin)
+admin.site.register(EmailAndCode, EmailAndCodeAdmin)
+admin.site.register(CustomUser, UserAdmin)
