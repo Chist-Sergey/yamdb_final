@@ -10,14 +10,9 @@ services:
     image: postgres:12.4
     restart: always
     volumes:
-<<<<<<< HEAD
       - postgres_data:/var/lib/postgresql/date/
     env_file:
       - .env
-=======
-      - postgres_data:/var/lib/postgresql/data
-
->>>>>>> 6cb657e25ce2794095afe037f3690be772aed13d
   web:
     #image: 2498573548934587/yamdb_final:latest
     build: .
