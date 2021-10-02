@@ -1,6 +1,6 @@
 # yamdb_final
 
-![yamdb_final workflow](https://github.com/bdcry/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![yamdb_final workflow](https://github.com/Chist-Sergey/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 
 Это API проекта api_yamdb, который собирает отзывы (Review) пользователей на произведения (Title). Произведения делятся на категории (Category). В каждой категории есть произведения: книги, фильмы или музыка. Произведению может быть присвоен жанр (Genres) из списка предустановленных. Новые жанры может создавать только администратор.
@@ -10,6 +10,13 @@
 Настроен Continuous Integration и Continuous Deployment для проекта YaMDB: автоматический запуск тестов, обновление образов на Docker Hub и автоматический деплой на боевой сервер при пуше в ветку main
 
 ---
+### Технологии
+- Python 3.8.5
+- Django 3.0.5
+- Docker-compose 3.7
+- nginx 1.19.3
+- postgres 12.4
+
 
 <h3> Установка и развертывание </h3>
 После выполнения push необходимо зайти на сервер
@@ -17,15 +24,28 @@
     $ ssh yc-user@<IP адрес>
 
 
-Выполнить миграции
+### Установка докер
+https://docs.docker.com/engine/install/
 
-    $ docker-compose exec web python manage.py migrate
+### Запуск проекта 
+``` docker-compose up -d --build ```Shell
 
-Собрать статику
-    
-    $ docker-compose exec web python manage.py collectstatic --noinput
+### Создание миграций приложения пользователей
+```docker-compose exec web python manage.py makemigrations users```Shell
 
-https://hub.docker.com/repository/docker/bdcry/yamdb_final - dockerhub
+### Миграции
+```docker-compose exec web python manage.py migrate --noinput```Shell
 
-http://130.193.34.147/admin/login/?next=/admin/ - облако
-или http://130.193.34.147/api/v1/
+### Сбор статики
+```docker-compose exec web python manage.py collectstatic --no-input```Shell
+
+### Cоздания суперпользователя 
+``` docker-compose exec web python manage.py createsuperuser ```Shell
+
+### Заполнения базы начальными данными
+``` docker-compose exec web python manage.py loaddata fixtures.json ```Shell
+
+### Работал над проектом: Serezha Chistov - ученик Яндекс.Практикум
+https://hub.docker.com/repository/docker/Chist-Sergey/yamdb_final - dockerhub - dockerhub
+
+http://84.252.128.134/admin/login/?next=/admin/ - облако 
