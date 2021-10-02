@@ -1,6 +1,6 @@
 # yamdb_final
 
-![yamdb_final workflow](https://github.com/SanyaDeath/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![yamdb_final workflow](https://github.com/Chist-Sergey/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 
 Это API проекта api_yamdb, который собирает отзывы (Review) пользователей на произведения (Title). Произведения делятся на категории (Category). В каждой категории есть произведения: книги, фильмы или музыка. Произведению может быть присвоен жанр (Genres) из списка предустановленных. Новые жанры может создавать только администратор.
@@ -46,6 +46,6 @@ https://docs.docker.com/engine/install/
 ``` docker-compose exec web python manage.py loaddata fixtures.json ```Shell
 
 ### Работал над проектом: Алексей Белов - ученик Яндекс.Практикум
-https://hub.docker.com/repository/docker/sanyadeath/yamdb_final - dockerhub - dockerhub
+https://hub.docker.com/repository/docker/Chist-Sergey/yamdb_final - dockerhub - dockerhub
 
 http://84.252.128.134/admin/login/?next=/admin/ - облако 
