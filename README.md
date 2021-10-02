@@ -45,7 +45,7 @@ https://docs.docker.com/engine/install/
 ### Заполнения базы начальными данными
 ``` docker-compose exec web python manage.py loaddata fixtures.json ```Shell
 
-### Работал над проектом: Serezha Chistov - ученик Яндекс.Практикум
+### Работал над проектом: Tipo Serega - ученик Яндекс.Практикум
 https://hub.docker.com/repository/docker/Chist-Sergey/yamdb_final - dockerhub - dockerhub
 
 http://84.252.128.134/admin/login/?next=/admin/ - облако 
