@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
   web:
-    image: chistovsergeivadimovich/yamdb_final:v9000
+    image: chistovsergeivadimovich/yamdb_final:lastest
     restart: always
     volumes:
       - static_value:/code/static/
