@@ -14,7 +14,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.8
 
       - name: Install dependencies
         run: |
@@ -28,7 +28,6 @@ jobs:
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
-    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     needs: tests
 
@@ -49,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: chistovsergeivadimovich/yamdb_final:v1.1
+          tags: chistovsergeivadimovich/yamdb_final:latest
 
   deploy:
     name: Deploing the project
@@ -86,4 +85,4 @@ jobs:
         with:
           to: ${{ secrets.TL_TO }}
           token: ${{ secrets.TL_TOKEN }}
-          message: ${{ github.workflow }} успешно выполнен!
+          message: ${{ github.workflow }} успешно выполнен! 
